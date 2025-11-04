@@ -95,7 +95,7 @@ END:VCARD`;
               Edwar Cano Legarda
             </h1>
             <p className="text-xl lg:text-2xl font-bold text-foreground mb-8 leading-relaxed text-shadow">
-              Coordinador Bienestar y Comunicaciones en Fedeán - Asociación Solidaria
+              Coordinador Bienestar y Comunicaciones
             </p>
 
             {/* CTA Button */}
