@@ -1,0 +1,205 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Base colors */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%;
+    
+    /* Card colors */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    
+    /* Popover colors */
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    
+  /* Primary - yellow/green Fedeán */
+  --primary: 45 100% 51%; /* Amarillo Fedeán */
+  --primary-foreground: 0 0% 10%;
+  --primary-glow: 45 100% 61%;
+    
+    /* Secondary - green accent */
+    --secondary: 142 76% 50%; /* Verde Fedeán */
+    --secondary-foreground: 0 0% 100%;
+    
+    /* Muted colors */
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    
+  /* Accent colors - green */
+  --accent: 142 76% 45%;
+  --accent-foreground: 0 0% 100%;
+    
+    /* Destructive colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Border and input */
+    --border: 0 0% 92%;
+    --input: 0 0% 94%;
+  --ring: 45 100% 51%;
+    
+    /* Design system tokens */
+  --hero-gradient: linear-gradient(135deg, hsl(0, 0%, 98%) 0%, hsl(45, 100%, 95%) 50%, hsl(142, 76%, 95%) 100%);
+  --card-shadow: 0 4px 20px -4px hsl(45 100% 51% / 0.15);
+  --card-shadow-hover: 0 12px 40px -8px hsl(45 100% 51% / 0.25);
+  --glow-primary: 0 0 30px hsl(45 100% 61% / 0.4);
+  --glow-strong: 0 0 40px hsl(45 100% 61% / 0.6);
+    
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 8%;
+    --foreground: 0 0% 95%;
+    
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 95%;
+    
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 95%;
+    
+    --primary: 45 100% 55%; /* Amarillo más brillante para dark mode */
+    --primary-foreground: 0 0% 8%;
+    --primary-glow: 45 100% 65%;
+    
+    --secondary: 142 76% 50%; /* Verde más brillante para dark mode */
+    --secondary-foreground: 0 0% 100%;
+    
+    --muted: 0 0% 16%;
+    --muted-foreground: 0 0% 65%;
+    
+    --accent: 142 76% 50%;
+    --accent-foreground: 0 0% 8%;
+    
+    --destructive: 0 84% 65%;
+    --destructive-foreground: 0 0% 8%;
+    
+    --border: 0 0% 20%;
+    --input: 0 0% 18%;
+    --ring: 45 100% 55%;
+    
+    --hero-gradient: linear-gradient(135deg, hsl(0, 0%, 12%) 0%, hsl(45, 100%, 20%) 50%, hsl(142, 76%, 15%) 100%);
+    --card-shadow: 0 4px 20px -4px hsl(45 100% 55% / 0.15);
+    --card-shadow-hover: 0 12px 40px -8px hsl(45 100% 55% / 0.15);
+    --glow-primary: 0 0 30px hsl(45 100% 65% / 0.3);
+    --glow-strong: 0 0 40px hsl(45 100% 65% / 0.5);
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter antialiased;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+}
+
+@layer components {
+  .gradient-hero {
+    background: var(--hero-gradient);
+    background-attachment: fixed;
+  }
+  
+  .glow-primary {
+    box-shadow: var(--glow-primary);
+  }
+  
+  .glow-strong {
+    box-shadow: var(--glow-strong);
+  }
+  
+  .card-elegant {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .card-elegant:hover {
+    box-shadow: var(--card-shadow-hover);
+    transform: translateY(-4px);
+  }
+  
+  .btn-hero {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 rounded-full px-8 py-4 font-medium transition-all duration-300 ease-out hover:shadow-lg hover:scale-105;
+  }
+  
+  .btn-hero:hover {
+    box-shadow: var(--glow-primary);
+  }
+  
+  .profile-glow {
+    border: 3px solid hsl(var(--primary));
+    box-shadow: var(--glow-primary);
+    transition: all 0.3s ease;
+  }
+  
+  .profile-glow:hover {
+    box-shadow: var(--glow-strong);
+    transform: scale(1.05);
+  }
+  
+  /* Text shadows para mejorar legibilidad en modo oscuro */
+  .dark .text-shadow {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 4px 20px rgba(0, 0, 0, 0.6);
+  }
+  
+  .dark .text-shadow-strong {
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.9), 0 4px 25px rgba(0, 0, 0, 0.7), 0 8px 40px rgba(0, 0, 0, 0.5);
+  }
+  
+  .dark .text-shadow-subtle {
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6), 0 2px 12px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Text shadows para mejorar legibilidad en modo claro */
+  .text-shadow {
+    text-shadow: 0 2px 12px rgba(255, 255, 255, 0.95), 0 4px 24px rgba(255, 255, 255, 0.85), 0 1px 3px rgba(255, 255, 255, 1);
+  }
+  
+  .text-shadow-strong {
+    text-shadow: 0 2px 18px rgba(255, 255, 255, 1), 0 4px 30px rgba(255, 255, 255, 0.9), 0 8px 45px rgba(255, 255, 255, 0.7), 0 1px 4px rgba(255, 255, 255, 1);
+  }
+  
+  .text-shadow-subtle {
+    text-shadow: 0 1px 8px rgba(255, 255, 255, 0.8), 0 2px 16px rgba(255, 255, 255, 0.6), 0 1px 2px rgba(255, 255, 255, 0.9);
+  }
+}
