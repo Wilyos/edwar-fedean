@@ -27,7 +27,7 @@ FN:Edwar Cano Legarda
 N:Cano Legarda;Edwar;;;
 ORG:Fedeán - Asociación Solidaria
 TITLE:Coordinador Bienestar y Comunicaciones
-TEL:
+TEL:+573243047653
 EMAIL:fedean@fedean.org.co
 URL:https://www.fedean.org.co
 ADR:;;Carrera 52 # 42-60 local 104;Medellín;Antioquia;;Colombia

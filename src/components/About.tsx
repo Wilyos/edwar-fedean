@@ -2,7 +2,7 @@ import profileAbout from "@/assets/profile2.webp";
 
 const About = () => {
   return (
-  <section className="py-24 bg-secondary/20 relative" id="about">
+  <section className="py-24 bg-secondary/20 dark:bg-background relative" id="about">
      
       <div className="container mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">

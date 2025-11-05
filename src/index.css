@@ -82,12 +82,12 @@ All colors MUST be HSL.
     --popover: 0 0% 10%;
     --popover-foreground: 0 0% 95%;
     
-    --primary: 45 100% 55%; /* Amarillo más brillante para dark mode */
+    --primary: 142 76% 50%; /* Verde Fedeán para dark mode */
     --primary-foreground: 0 0% 8%;
-    --primary-glow: 45 100% 65%;
+    --primary-glow: 142 76% 60%;
     
-    --secondary: 142 76% 50%; /* Verde más brillante para dark mode */
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 45 100% 55%; /* Amarillo para secondary en dark mode */
+    --secondary-foreground: 0 0% 8%;
     
     --muted: 0 0% 16%;
     --muted-foreground: 0 0% 65%;
@@ -100,13 +100,13 @@ All colors MUST be HSL.
     
     --border: 0 0% 20%;
     --input: 0 0% 18%;
-    --ring: 45 100% 55%;
+    --ring: 142 76% 50%;
     
-    --hero-gradient: linear-gradient(135deg, hsl(0, 0%, 12%) 0%, hsl(45, 100%, 20%) 50%, hsl(142, 76%, 15%) 100%);
-    --card-shadow: 0 4px 20px -4px hsl(45 100% 55% / 0.15);
-    --card-shadow-hover: 0 12px 40px -8px hsl(45 100% 55% / 0.15);
-    --glow-primary: 0 0 30px hsl(45 100% 65% / 0.3);
-    --glow-strong: 0 0 40px hsl(45 100% 65% / 0.5);
+    --hero-gradient: linear-gradient(135deg, hsl(0, 0%, 12%) 0%, hsl(142, 76%, 20%) 50%, hsl(0, 0%, 10%) 100%);
+    --card-shadow: 0 4px 20px -4px hsl(142 76% 50% / 0.15);
+    --card-shadow-hover: 0 12px 40px -8px hsl(142 76% 50% / 0.15);
+    --glow-primary: 0 0 30px hsl(142 76% 60% / 0.3);
+    --glow-strong: 0 0 40px hsl(142 76% 60% / 0.5);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;

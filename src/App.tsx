@@ -14,16 +14,24 @@ const queryClient = new QueryClient();
 const App = () => {
   const [dark, setDark] = useState(() => {
     if (typeof window !== "undefined") {
-      return document.documentElement.classList.contains("dark");
+      // Verificar si hay preferencia guardada
+      const saved = localStorage.getItem("theme");
+      if (saved) {
+        return saved === "dark";
+      }
+      // Si no hay preferencia guardada, usar modo oscuro por defecto
+      return true;
     }
-    return false;
+    return true;
   });
 
   useEffect(() => {
     if (dark) {
       document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
     } else {
       document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
     }
   }, [dark]);
 
