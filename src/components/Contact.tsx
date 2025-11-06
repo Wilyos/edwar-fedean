@@ -7,6 +7,8 @@ import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
   const { toast } = useToast();
+  // URL del Web App de Google Apps Script para guardar en Google Sheets
+  const SHEET_WEBAPP_URL = (import.meta as any).env?.VITE_SHEET_WEBAPP_URL || "";
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,10 +21,38 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Construir mensaje para WhatsApp sin asteriscos (formato simple)
-    const message = `Nuevo mensaje de contacto
+    // Guardar en Google Sheets (Apps Script) usando petición simple para evitar CORS
+    const saveToSheet = async () => {
+      if (!SHEET_WEBAPP_URL) {
+        console.warn("VITE_SHEET_WEBAPP_URL no está configurada. Saltando guardado en Sheets.");
+        return;
+      }
+      try {
+        const params = new URLSearchParams({
+          timestamp: new Date().toISOString(),
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          userAgent: navigator.userAgent,
+          page: window.location.href,
+        });
+        await fetch(SHEET_WEBAPP_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+          },
+          body: params.toString(),
+        });
+      } catch (err) {
+        console.error("Error guardando en Sheets:", err);
+      }
+    };
 
-Nombre: ${formData.name}
+    // Construir mensaje para WhatsApp sin asteriscos (formato simple)
+    const message = `Hola mi nombre es ${formData.name} y me gustaría ponerme en contacto con ustedes. estos son mis datos:
+
 Email: ${formData.email}
 Teléfono: ${formData.phone}
 
@@ -32,14 +62,17 @@ ${formData.message}`;
     // Número de WhatsApp (sin + ni espacios)
     const whatsappNumber = "573243047653";
     
-    // Abrir WhatsApp usando wa.me (más compatible)
+  // Guardar primero en la hoja (envío "fire-and-forget" sin bloquear UX)
+  await saveToSheet();
+
+  // Abrir WhatsApp usando wa.me (más compatible)
     const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
     
     setTimeout(() => {
       toast({
-        title: "¡Redirigiendo a WhatsApp!",
-        description: "Se abrirá WhatsApp con tu mensaje prellenado.",
+        title: "¡Listo!",
+        description: "Abrimos WhatsApp y registramos tu mensaje.",
       });
       setFormData({ name: "", email: "", phone: "", message: "" });
       setIsSubmitting(false);
@@ -78,7 +111,7 @@ ${formData.message}`;
         
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Formulario de Contacto */}
-          <div className="order-2 lg:order-1">
+          <div className="order-1 lg:order-1">
             <div className="card-elegant rounded-2xl p-8">
               <h3 className="text-2xl font-bold mb-6">Envíanos un mensaje</h3>
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -158,7 +191,7 @@ ${formData.message}`;
           </div>
 
           {/* Información de Contacto */}
-          <div className="order-1 lg:order-2">
+          <div className="order-2 lg:order-2">
             <div className="space-y-6">
               {socialLinks.map(({ icon: Icon, href, label, username }) => (
                 <a

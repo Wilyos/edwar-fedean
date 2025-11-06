@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Download, Globe, Linkedin, Mail, Instagram } from "lucide-react";
+import { Globe, Linkedin, Mail, Instagram, MessageCircle } from "lucide-react";
 import profileImage from "@/assets/edwarp.webp";
 import dayBg from "@/assets/video/day-bg3.mp4";
 import nightBg from "@/assets/video/night-bg.mp4";
@@ -20,28 +20,14 @@ const Hero = () => {
     return () => observer.disconnect();
   }, []);
 
-  const downloadVCard = () => {
-    const vCardData = `BEGIN:VCARD
-VERSION:3.0
-FN:Edwar Cano Legarda
-N:Cano Legarda;Edwar;;;
-ORG:Fedeán - Asociación Solidaria
-TITLE:Coordinador Bienestar y Comunicaciones
-TEL:+573243047653
-EMAIL:fedean@fedean.org.co
-URL:https://www.fedean.org.co
-ADR:;;Carrera 52 # 42-60 local 104;Medellín;Antioquia;;Colombia
-END:VCARD`;
-
-    const blob = new Blob([vCardData], { type: 'text/vcard' });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'Edwar_Cano_Fedean.vcf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    window.URL.revokeObjectURL(url);
+  const scrollToContact = () => {
+    const el = document.getElementById('contact');
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      // Fallback
+      window.location.hash = 'contact';
+    }
   };
 
   return (
@@ -100,9 +86,9 @@ END:VCARD`;
 
             {/* CTA Button */}
             <div className="mb-12">
-              <Button onClick={downloadVCard} className="btn-hero group">
-                <Download className="mr-2 h-5 w-5 group-hover:animate-bounce" />
-               Guardar Contacto
+              <Button onClick={scrollToContact} className="btn-hero group" aria-label="Ir a la sección de contacto">
+                <MessageCircle className="mr-2 h-5 w-5" />
+                Contactar
               </Button>
             </div>
 
